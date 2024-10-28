@@ -33,7 +33,7 @@ const main = async () => {
   const itv = await updateToken();
   const postItv = await getAndPost();
   // console.log(`[+] Token update interval started with id: ${itv}`);
-  const eventsToHandle = ['SIGTERM', 'SIGINT', 'unhandledRejection', 'uncaughtException', 'SIGUSR2'];
+  const eventsToHandle = ['SIGINT', 'unhandledRejection', 'uncaughtException', 'SIGUSR2'];
   eventsToHandle.forEach(async e => process.on(e, async orgErr => {
     try {
       console.log(orgErr);
