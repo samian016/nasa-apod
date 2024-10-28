@@ -4,7 +4,6 @@ const request = require('../utils/req');
 const getAllPost = async (req, res) => {
   const paginate = req.query.paginate === 'true' ? true : false;
   delete req.query.paginate;
-  console.log(sd);
   const apodPost = await ApodPost.paginate({
     ...req.query,
   }, {
