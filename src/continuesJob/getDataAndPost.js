@@ -22,6 +22,7 @@ const getAndPost = async () => {
       const initialResp = await request('GET', url);
       const { hdurl } = initialResp;
       const messageStr = formatPostCaption(initialResp);
+
       console.log("[+] title created");
       const fbUrl = `https://graph.facebook.com/v21.0/482510824938423/photos?access_token=${access_token}`;
       const initialPost = await request('POST', fbUrl, {

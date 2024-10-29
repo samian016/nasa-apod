@@ -24,7 +24,7 @@ const main = async () => {
     console.log(`[+] listening to port ${PORT}`);
   })
     .on("error", (err) => {
-      console.log(err);
+      console.log(err.message);
       process.exit();
     })
     .on("close", () => {
@@ -33,10 +33,10 @@ const main = async () => {
   const itv = await updateToken();
   const postItv = await getAndPost();
   // console.log(`[+] Token update interval started with id: ${itv}`);
-  const eventsToHandle = ['SIGINT', 'unhandledRejection', 'uncaughtException', 'SIGUSR2'];
+  const eventsToHandle = [/* 'SIGINT', */ 'unhandledRejection', 'uncaughtException'/* , 'SIGUSR2' */];
   eventsToHandle.forEach(async e => process.on(e, async orgErr => {
     try {
-      console.log(orgErr);
+      console.log("Event:", orgErr);
       console.log(`[-] Handling update token and post interval. ${itv} and ${postItv}`);
       clearInterval(itv);
       clearInterval(postItv);
