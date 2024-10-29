@@ -6,35 +6,35 @@ const ApodPostSchema = new Schema(
   {
     copyright: {
       type: String,
-      required: true,
+      required: false,
     },
     date: {
       type: String,
-      required: true,
+      required: false,
     },
     explanation: {
       type: String,
-      required: true,
+      required: false,
     },
     hdurl: {
       type: String,
-      required: true,
+      required: false,
     },
     media_type: {
       type: String,
-      required: true,
+      required: false,
     },
     service_version: {
       type: String,
-      required: true,
+      required: false,
     },
     title: {
       type: String,
-      required: true,
+      required: false,
     },
     url: {
       type: String,
-      required: true,
+      required: false,
     }
   },
   {
