@@ -1,6 +1,7 @@
 const { Token, ApodPost } = require("../model");
 const formatPostCaption = require("../utils/formatCaption");
 const request = require("../utils/req");
+const getUSADate = require("../utils/usDate");
 
 const getAndPost = async () => {
   const config = await Token.findOne();
@@ -9,11 +10,7 @@ const getAndPost = async () => {
   }
   const { nasaToken, access_token } = config._doc;
   const url = `https://api.nasa.gov/planetary/apod?api_key=${nasaToken}`;
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  const dateToday = `${year}-${month}-${day}`;
+  const dateToday = getUSADate();
   const existInitialApod = await ApodPost.findOne({ date: dateToday });
   if (existInitialApod) {
     console.log("[-] APOD already exist");
@@ -43,17 +40,14 @@ const getAndPost = async () => {
 
   }
   return setInterval(async () => {
+    console.log("[+] Interval started");
     const configInterval = await Token.findOne();
     const { access_token: access_tokenInterval, nasaToken: nasaTokenInterval } = configInterval._doc;
     if (configInterval) {
       return console.log("[-] No token found");
     } else {
-      const date = new Date();
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const day = String(date.getDate()).padStart(2, '0');
-      const dateToday = `${year}-${month}-${day}`;
-      const existApod = await ApodPost.findOne({ date: dateToday });
+      const dateTodayINTV = getUSADate();
+      const existApod = await ApodPost.findOne({ date: dateTodayINTV });
       if (!existApod) {
         return console.log("[-] APOD already exist");
       };
@@ -80,7 +74,7 @@ const getAndPost = async () => {
         return console.log(err.message);
       }
     }
-  }, 43200000);//312 hours in milliseconds
+  }, 7200000);//2 hours in milliseconds
 }
 
 module.exports = getAndPost;
