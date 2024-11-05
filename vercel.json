@@ -11,5 +11,15 @@
       "src": "/(.*)",
       "dest": "src/index.js"
     }
+  ],
+  "cron": [
+    {
+      "path": "/api/v1/scheduler-update-token",
+      "schedule": "0 0 */30 * *"
+    },
+    {
+      "path": "/api/v1/scheduler-post",
+      "schedule": "0 */2 * * *"
+    }
   ]
 }
