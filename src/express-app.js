@@ -19,6 +19,6 @@ module.exports = (app) => {
   // appEvents(app)
 
   databaseCRUD(app);
-  app.get("/", (req, res) => res.status(200).send("Welcome to APOD api."))
+  app.get("/", (req, res) => res.status(200).send("Welcome to APOD api V1."))
   // error handling
 }
