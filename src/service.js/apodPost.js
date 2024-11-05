@@ -41,6 +41,9 @@ const updateToken = async (req, res) => {
 
 
 const schedulerUpdateToken = async (req, res) => {
+  if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+    return res.status(401).end('Unauthorized');
+  }
   const config = await Token.findOne();
   const { access_token, client_id, client_secret } = config._doc;
   // console.log("access_token")
@@ -60,6 +63,9 @@ const schedulerUpdateToken = async (req, res) => {
 }
 
 const schedulerPost = async (req, res) => {
+  if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
+    return res.status(401).end('Unauthorized');
+  }
   const config = await Token.findOne();
   if (!config) {
     console.error("[-] No token found for initial post!");
