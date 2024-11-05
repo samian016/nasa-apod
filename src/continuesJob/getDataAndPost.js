@@ -21,7 +21,7 @@ const getAndPost = async () => {
       const messageStr = formatPostCaption(initialResp);
 
       console.log("[+] title created");
-      const fbUrl = `https://graph.facebook.com/v21.0/482510824938423/photos?access_token=${access_token}`;
+      const fbUrl = `https://graph.facebook.com/v21.0/${process.env.PAGE_ID}/photos?access_token=${access_token}`;
       const initialPost = await request('POST', fbUrl, {
         message: messageStr,
         url: hdurl
@@ -57,7 +57,7 @@ const getAndPost = async () => {
         const { hdurl: intervalUrl } = resp;
         const messageStrInterval = formatPostCaption(resp);
         console.log("[+] title created");
-        const fbUrlInterval = `https://graph.facebook.com/v21.0/482510824938423/photos?access_token=${access_tokenInterval}`;
+        const fbUrlInterval = `https://graph.facebook.com/v21.0/${process.env.PAGE_ID}/photos?access_token=${access_tokenInterval}`;
         const post = await request('POST', fbUrlInterval, {
           message: messageStrInterval,
           url: intervalUrl
