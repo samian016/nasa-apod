@@ -1,6 +1,7 @@
 const { ApodPost, Token } = require('../model/index');
 const request = require('../utils/req');
-const { getUSADate, formatPostCaption } = require('../utils/helper');
+const getUSADate = require("../utils/usDate");
+const formatPostCaption = require("../utils/formatCaption");
 
 const getAllPost = async (req, res) => {
   const paginate = req.query.paginate === 'true' ? true : false;
