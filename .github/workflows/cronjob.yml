@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Update Token - 20-Day Interval
         run: |
-          curl -X POST https://nasa-apod-gray.vercel.app/api/v1/scheduler-update-token \
+          curl -X POST https://nasa-apod-apod.vercel.app/api/v1/scheduler-update-token \
             -H "Authorization: Bearer samian016"
 
   # Job 2: 2-hour interval
@@ -26,5 +26,5 @@ jobs:
     steps:
       - name: Scheduler Post - 2-Hour Interval
         run: |
-          curl -X POST https://nasa-apod-gray.vercel.app/api/v1/scheduler-post \
+          curl -X POST https://nasa-apod-apod.vercel.app/api/v1/scheduler-post \
             -H "Authorization: Bearer samian016"
