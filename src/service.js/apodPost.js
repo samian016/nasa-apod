@@ -41,6 +41,7 @@ const updateToken = async (req, res) => {
 
 
 const schedulerUpdateToken = async (req, res) => {
+  console.log("[+] Scheduler Update Token");
   if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
     return res.status(401).end('Unauthorized');
   }
@@ -63,6 +64,7 @@ const schedulerUpdateToken = async (req, res) => {
 }
 
 const schedulerPost = async (req, res) => {
+  console.log("[+] Scheduler Post");
   if (req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`) {
     return res.status(401).end('Unauthorized');
   }

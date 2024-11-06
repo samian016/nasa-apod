@@ -1,0 +1,30 @@
+name: Scheduled NASA APOD Tasks
+
+on:
+  # Define schedules for each job
+  schedule:
+    # Call the first job every 20 days at midnight UTC
+    - cron: "0 0 */20 * *"
+    # Call the second job every 2 hours
+    - cron: "0 */2 * * *"
+
+jobs:
+  # Job 1: 20-day interval
+  update-token:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 0 */20 * *'
+    steps:
+      - name: Update Token - 20-Day Interval
+        run: |
+          curl -X POST https://nasa-apod-gray.vercel.app/api/v1/scheduler-update-token \
+            -H "Authorization: Bearer samian016"
+
+  # Job 2: 2-hour interval
+  post-scheduler:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 */2 * * *'
+    steps:
+      - name: Scheduler Post - 2-Hour Interval
+        run: |
+          curl -X POST https://nasa-apod-gray.vercel.app/api/v1/scheduler-post \
+            -H "Authorization: Bearer samian016"
