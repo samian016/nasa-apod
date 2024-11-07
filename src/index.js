@@ -30,16 +30,16 @@ const main = async () => {
     .on("close", () => {
       // channel.close();
     });
-  const itv = await updateToken();
-  const postItv = await getAndPost();
+  // const itv = await updateToken();
+  // const postItv = await getAndPost();
   // console.log(`[+] Token update interval started with id: ${itv}`);
   const eventsToHandle = [/* 'SIGINT', */ 'unhandledRejection', 'uncaughtException'/* , 'SIGUSR2' */];
   eventsToHandle.forEach(async e => process.on(e, async orgErr => {
     try {
       console.log("Event:", orgErr);
-      console.log(`[-] Handling update token and post interval. ${itv} and ${postItv}`);
-      clearInterval(itv);
-      clearInterval(postItv);
+      // console.log(`[-] Handling update token and post interval. ${itv} and ${postItv}`);
+      // clearInterval(itv);
+      // clearInterval(postItv);
       return process.exit();
     }
     catch (e) {

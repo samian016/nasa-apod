@@ -11,6 +11,7 @@ const ApodPostSchema = new Schema(
     date: {
       type: String,
       required: false,
+      unique:true,
     },
     explanation: {
       type: String,
