@@ -5,13 +5,21 @@ const formatPostCaption = require("../utils/formatCaption");
 
 const getAllPost = async (req, res) => {
   const paginate = req.query.paginate === 'true' ? true : false;
+  const page = parseInt(req.query.page);
+  const limit = parseInt(req.query.limit);
   delete req.query.paginate;
+  delete req.query.page;
+  delete req.query.limit;
+  delete req.query.offset;
+
   const apodPost = await ApodPost.paginate({
     ...req.query,
   }, {
     pagination: paginate,
+    page: page,
+    limit: limit,
   });
-  res.send(apodPost);
+  return res.send(apodPost);
 };
 
 const updateToken = async (req, res) => {
