@@ -7,10 +7,16 @@ const getAllPost = async (req, res) => {
   const paginate = req.query.paginate === 'true' ? true : false;
   const page = parseInt(req.query.page);
   const limit = parseInt(req.query.limit);
+  const sort = req.query?.sort ? req.query.sort?.includes("-") ? {
+    [req.query.sort?.replace("-", "")]: -1
+  } : {
+    [req.query.sort]: 1
+  } : undefined;
   delete req.query.paginate;
   delete req.query.page;
   delete req.query.limit;
   delete req.query.offset;
+  delete req.query.sort;
 
   const apodPost = await ApodPost.paginate({
     ...req.query,
@@ -18,6 +24,7 @@ const getAllPost = async (req, res) => {
     pagination: paginate,
     page: page,
     limit: limit,
+    sort: sort,
   });
   return res.send(apodPost);
 };

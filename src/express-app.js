@@ -9,6 +9,6 @@ module.exports = (app) => {
   app.use("/files", express.static(path.join(__dirname, "../")))
 
   databaseCRUD(app);
-  app.get("/", (req, res) => res.status(200).send("Welcome to APOD api V1."))
+  app.get("/", (req, res) => res.status(200).send("Welcome to APOD api V1 (mint)."))
   // error handling
 }
