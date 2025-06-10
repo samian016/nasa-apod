@@ -11,7 +11,7 @@ const ApodPostSchema = new Schema(
     date: {
       type: String,
       required: false,
-      unique:true,
+      unique: true,
     },
     explanation: {
       type: String,
@@ -34,6 +34,10 @@ const ApodPostSchema = new Schema(
       required: false,
     },
     url: {
+      type: String,
+      required: false,
+    },
+    aspectRatio: {
       type: String,
       required: false,
     }

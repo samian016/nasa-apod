@@ -99,18 +99,19 @@ const schedulerPost = async (req, res) => {
   } else {
     try {
       const initialResp = await request('GET', url);
-      const { hdurl } = initialResp;
+      const { hdurl, url: uri } = initialResp;
       const messageStr = formatPostCaption(initialResp);
 
       console.log("[+] title created");
       const fbUrl = `https://graph.facebook.com/v21.0/${process.env.PAGE_ID}/photos?access_token=${access_token}`;
       const initialPost = await request('POST', fbUrl, {
         message: messageStr,
-        url: hdurl
+        url: hdurl ?? uri
       });
       if (initialPost.post_id) {
         console.log("[+] Post On Facebook success");
-        const schema = ApodPost(initialResp)
+        const { ratio } = await getImageAspectRatio(hdurl || uri);
+        const schema = ApodPost({ ...initialResp, ...ratio && { aspectRatio: ratio } })
         if (!schema) {
           console.log("[-]Post not saved");
         }

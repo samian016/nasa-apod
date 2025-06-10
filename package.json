@@ -20,6 +20,7 @@
     "express": "^4.21.1",
     "mongoose": "^8.7.2",
     "mongoose-paginate-v2": "^1.8.5",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "probe-image-size": "^7.2.3"
   }
 }
